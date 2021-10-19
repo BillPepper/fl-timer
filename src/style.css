@@ -40,7 +40,7 @@ button:hover {
   text-shadow: 1px 1px 5px #007799;
 }
 
-.timerDisplay {
+.timer_display {
   font-size: 80px;
   text-align: center;
   border: 1px solid;
@@ -49,18 +49,18 @@ button:hover {
   border-top-right-radius: 5px;
 }
 
-.timerSettings {
+.timer_settings {
   display: grid;
   grid-template-columns: 2fr 3fr 2fr 2fr 3fr 2fr;
 }
 
-.timerSettings > input {
+.timer_settings > input {
   border: none;
   border-top: 1px solid;
   border-bottom: 1px solid;
 }
 
-.timerSettings button:hover {
+.timer_settings button:hover {
   border: 1px solid #007799;
 }
 
@@ -84,7 +84,7 @@ button:hover {
   }
 }
 
-.timerButton > button {
+.timer_button > button {
   width: 320px;
   border: 1px solid;
   border-top: none;
@@ -93,10 +93,18 @@ button:hover {
   z-index: 200;
 }
 
-.timerButton > button:hover {
+.timer_button > button:hover {
   border: 1px solid #007799;
 }
 
 input {
   max-width: 100px;
+}
+
+.timer_footer_note {
+  opacity: 0.5;
+  position: absolute;
+  left: 5px;
+  bottom: 5px;
+  font-size: 10px;
 }

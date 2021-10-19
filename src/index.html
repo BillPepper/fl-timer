@@ -4,6 +4,7 @@
       href="https://fonts.googleapis.com/css?family=Rubik&display=swap"
       rel="stylesheet"
     />
+    <script type="text/javascript" src="./timer.js" defer></script>
     <link rel="stylesheet" type="text/css" href="style.css" />
     <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico"/>
     <title>Timer | FlawlessLogic.net</title>
@@ -11,23 +12,24 @@
 
   <body>
     <div id="timer">
-      <div class="timerDisplay">
-        <span id="timerDisplayNumber">00:00</span>
+      <div class="timer_display">
+        <span id="timer_display_number">00:00</span>
       </div>
-      <div class="timerSettings" id="timerSettings">
-        <button class="settingsButton" id="minmin">-</button>
-        <input type="text" value="5" id="dispMin" />
-        <button class="settingsButton" id="minpls">+</button>
-        <button class="settingsButton" id="secmin">-</button>
-        <input type="text" value="0" id="dispSec" />
-        <button class="settingsButton" id="secpls">+</button>
+      <div class="timer_settings" id="timer_settings">
+        <button class="settings_button" id="button_minutes_sub">-</button>
+        <input type="text" value="5" id="input_minutes" />
+        <button class="settings_button" id="button_minutes_add">+</button>
+        <button class="settings_button" id="button_seconds_sub">-</button>
+        <input type="text" value="0" id="input_seconds" />
+        <button class="settings_button" id="button_seconds_add">+</button>
       </div>
-      <div class="timerButton">
-        <button id="triggerButton">
+      <div class="timer_button">
+        <button id="button_timer_start">
           Start
         </button>
       </div>
     </div>
+    <span class="timer_footer_note">v0.2.0 // This tools does not save any data whatsoever</span>
   </body>
 </html>
-<script type="text/javascript" src="./timer.js"></script>
+

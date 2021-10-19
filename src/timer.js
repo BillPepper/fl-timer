@@ -1,15 +1,17 @@
-const timerDisplay = document.getElementById("timerDisplayNumber");
+// FL-Timer v0.2.0
 
-const minMinus = document.getElementById("minmin");
-const minPlus = document.getElementById("minpls");
-const displayMin = document.getElementById("dispMin");
+const timerDisplay = document.getElementById("timer_display_number");
 
-const secMinus = document.getElementById("secmin");
-const secPlus = document.getElementById("secpls");
-const displaySec = document.getElementById("dispSec");
+const minMinus = document.getElementById("button_minutes_sub");
+const minPlus = document.getElementById("button_minutes_add");
+const displayMin = document.getElementById("input_minutes");
 
-const timerSettings = document.getElementById("timerSettings");
-const triggerButton = document.getElementById("triggerButton");
+const secMinus = document.getElementById("button_seconds_sub");
+const secPlus = document.getElementById("button_seconds_add");
+const displaySec = document.getElementById("input_seconds");
+
+const timerSettings = document.getElementById("timer_settings");
+const triggerButton = document.getElementById("button_timer_start");
 
 let timerCount = 0;
 let timerActive = false;
@@ -17,35 +19,35 @@ let timerActive = false;
 let alertInterval = null;
 let timerInterval = null;
 
-const handleClick = id => {
+const handleClick = (id) => {
   switch (id) {
-    case "minmin":
+    case "button_minutes_sub":
       if (dispMin.value > 0) {
         displayMin.value--;
       }
       break;
-    case "minpls":
+    case "button_minutes_add":
       displayMin.value++;
       break;
-    case "secmin":
+    case "button_seconds_sub":
       if (dispSec.value > 0) {
         displaySec.value--;
       }
       break;
-    case "secpls":
+    case "button_seconds_add":
       displaySec.value++;
       break;
-    case "triggerButton":
+    case "button_timer_start":
       trigger();
       break;
   }
 };
 
-const toTwoDigits = no => {
+const toTwoDigits = (no) => {
   return no.toString().padStart(2, "0");
 };
 
-const setDisplay = seconds => {
+const setDisplay = (seconds) => {
   const min = Math.floor(seconds / 60);
   const sec = seconds - min * 60;
   timerDisplay.innerText = `${toTwoDigits(min)}:${toTwoDigits(sec)}`;
@@ -99,4 +101,4 @@ const stop = () => {
   console.log(timer);
 };
 
-document.addEventListener("click", e => handleClick(e.target.id));
+document.addEventListener("click", (e) => handleClick(e.target.id));
