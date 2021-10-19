@@ -1,3 +1,8 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
 body {
   background-color: #333;
   color: #999;
@@ -17,7 +22,6 @@ h5 {
 }
 
 #timer {
-  /* border: 1px solid #999; */
   border-radius: 2px;
   width: 320px;
   margin: auto;
@@ -108,3 +112,27 @@ input {
   bottom: 5px;
   font-size: 10px;
 }
+
+/* use these for actual mobile styles later on */
+
+/* @media screen and (orientation: portrait) {
+  body {
+    border: 2px solid blue;
+  }
+
+  #timer {
+    margin: auto;
+    margin-top: calc(50vh - 87px);
+  }
+}
+
+@media screen and (orientation: landscape) {
+  body {
+    border: 2px solid red;
+  }
+
+  #timer {
+    margin: auto;
+    margin-top: calc(50vh - 87px);
+  }
+} */
