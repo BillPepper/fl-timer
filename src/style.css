@@ -84,7 +84,7 @@ button:hover {
   }
 }
 
-.timer_button > button {
+#button_timer_start {
   width: 320px;
   border: 1px solid;
   border-top: none;
@@ -93,7 +93,7 @@ button:hover {
   z-index: 200;
 }
 
-.timer_button > button:hover {
+#button_timer_start:hover {
   border: 1px solid #007799;
 }
 
