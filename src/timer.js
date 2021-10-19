@@ -22,7 +22,7 @@ let timerInterval = null;
 const handleClick = (id) => {
   switch (id) {
     case "button_minutes_sub":
-      if (dispMin.value > 0) {
+      if (displayMin.value > 0) {
         displayMin.value--;
       }
       break;
@@ -30,7 +30,7 @@ const handleClick = (id) => {
       displayMin.value++;
       break;
     case "button_seconds_sub":
-      if (dispSec.value > 0) {
+      if (displaySec.value > 0) {
         displaySec.value--;
       }
       break;
