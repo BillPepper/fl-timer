@@ -1,4 +1,13 @@
-*Building*
+## FL-Timer
 
-This should be automated...
-To build the app run wepack over ./src/index.js and copy css into dist. Rename the js file to main.js
+# Install
+
+Just copy all files from _src_ to wherever you server serves files from.
+
+# Dependencies
+
+None. Removed all webpack and node stuff as it's not really needed for this tiny project.
+
+# Bugs
+
+None that braek the timer, but probably a few i did not find yet.
