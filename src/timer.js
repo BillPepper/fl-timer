@@ -1,5 +1,5 @@
 // FL-Timer
-const version = '0.2.2'
+const version = "0.2.3";
 
 const timerDisplay = document.getElementById("timer_display_number");
 
@@ -14,8 +14,8 @@ const displaySec = document.getElementById("input_seconds");
 const timerSettings = document.getElementById("timer_settings");
 const triggerButton = document.getElementById("button_timer_start");
 
-const versionString = document.getElementById("version-string")
-versionString.innerText = `v${version} // This tools does not save any data whatsoever`
+const versionString = document.getElementById("version-string");
+versionString.innerText = `v${version} // This tools does not save any data whatsoever`;
 
 let timerCount = 0;
 let timerActive = false;
