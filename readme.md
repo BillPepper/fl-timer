@@ -11,4 +11,3 @@ None. Removed all webpack and node stuff as it's not really needed for this tiny
 ## Bugs
 
 - Entering strings or empty into the inputs will cause NaN's
-- Input have input highlight which is ugly
