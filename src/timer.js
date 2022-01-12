@@ -1,5 +1,5 @@
 // FL-Timer
-const version = '0.2.2'
+const version = "0.2.2";
 
 const timerDisplay = document.getElementById("timer_display_number");
 
@@ -14,8 +14,8 @@ const displaySec = document.getElementById("input_seconds");
 const timerSettings = document.getElementById("timer_settings");
 const triggerButton = document.getElementById("button_timer_start");
 
-const versionString = document.getElementById("version-string")
-versionString.innerText = `v${version} // This tools does not save any data whatsoever`
+const versionString = document.getElementById("version-string");
+versionString.innerText = `v${version} // This tools does not save any data.`;
 
 let timerCount = 0;
 let timerActive = false;
@@ -60,12 +60,17 @@ const setDisplay = (seconds) => {
 const trigger = () => {
   if (timerActive) {
     stop();
-  } else {
-    start();
+    return;
   }
+
+  if (!inputsAreValid()) {
+    return;
+  }
+
+  start();
 };
 
-const alert = () => {
+const alarm = () => {
   alertInterval = setInterval(() => {
     document.querySelector("body").classList.toggle("negative");
   }, 1000);
@@ -74,19 +79,59 @@ const alert = () => {
 const finish = () => {
   clearInterval(timerInterval);
   timerDisplay.innerText = "Done!";
-  alert();
+  alarm();
 };
 
 const tick = () => {
-  timerCount--;
-  setDisplay(timerCount);
   if (timerCount < 1) {
     finish();
+    return;
   }
+  timerCount--;
+  setDisplay(timerCount);
+};
+
+const showError = (msg) => {
+  if (!msg || msg === "") {
+    console.log("no error message given");
+    return;
+  }
+  // ugly, but okay for now
+  alert(msg);
+};
+
+const isValidNumber = (num) => {
+  if (!num || isNaN(num)) {
+    return false;
+  }
+
+  return true;
+};
+
+const getInputMinutes = () => {
+  return displayMin.value;
+};
+
+const getInputSeconds = () => {
+  return displaySec.value;
+};
+
+const inputsAreValid = () => {
+  if (!isValidNumber(getInputMinutes())) {
+    showError('Enter valid number for "minutes"');
+    return false;
+  }
+
+  if (!isValidNumber(getInputSeconds())) {
+    showError('Enter valid number for "seconds"');
+    return false;
+  }
+
+  return true;
 };
 
 const start = () => {
-  timerCount = parseInt(displaySec.value) + parseInt(displayMin.value) * 60;
+  timerCount = parseInt(getInputSeconds()) + parseInt(getInputMinutes()) * 60;
   timerSettings.classList.add("in");
   triggerButton.innerText = "Stop";
   timerActive = true;
