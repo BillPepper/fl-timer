@@ -23,17 +23,18 @@ h5 {
 
 #timer {
   border-radius: 2px;
-  width: 320px;
-  margin: auto;
   margin-top: calc(50vh - 87px);
+  display: grid;
+  grid-template-rows: 100px 40px 40px;
+  max-height: 180px;
 }
 
 button,
 input {
   color: #999;
-  height: 40px;
+  height: 100%;
   border: 1px solid #999;
-  background-color: #333;
+  background-color: transparent;
   font-size: 20px;
   text-align: center;
   box-sizing: border-box;
@@ -113,27 +114,24 @@ input {
   bottom: 5px;
   font-size: 10px;
 }
-
-/* use these for actual mobile styles later on */
-
-/* @media screen and (orientation: portrait) {
-  body {
-    border: 2px solid blue;
-  }
-
+@media screen and (min-width: 460px) {
   #timer {
-    margin: auto;
-    margin-top: calc(50vh - 87px);
+    max-width: 320px;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
-
-@media screen and (orientation: landscape) {
-  body {
-    border: 2px solid red;
-  }
-
+@media screen and (max-height: 250px) {
   #timer {
-    margin: auto;
-    margin-top: calc(50vh - 87px);
+    margin-top: unset;
+    grid-template-rows: 60vh 20vh 20vh;
   }
-} */
+  #timer_display_number {
+    height: 100%;
+    display: block;
+    line-height: 150%;
+  }
+  .timer_footer_note {
+    display: none;
+  }
+}
