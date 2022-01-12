@@ -89,7 +89,7 @@ button:hover {
 }
 
 #button_timer_start {
-  width: 320px;
+  width: 100%;
   border: 1px solid;
   border-top: none;
   border-bottom-left-radius: 5px;
@@ -102,7 +102,7 @@ button:hover {
 }
 
 input {
-  max-width: 100px;
+  width: 100%;
 }
 
 .timer_footer_note {
