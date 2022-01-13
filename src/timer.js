@@ -1,5 +1,5 @@
 // FL-Timer
-const version = "0.2.2";
+const version = '0.2.2'
 
 const timerDisplay = document.getElementById("timer_display_number");
 
