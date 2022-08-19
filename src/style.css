@@ -45,6 +45,10 @@ button:hover {
   text-shadow: 1px 1px 5px #007799;
 }
 
+button + button {
+  border-left: none;
+}
+
 .timer_display {
   font-size: 80px;
   text-align: center;
