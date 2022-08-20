@@ -121,12 +121,12 @@ FLTimer = {
 
   inputsAreValid: () => {
     if (!FLTimer.isValidNumber(FLTimer.getInputMinutes())) {
-      showError('Enter valid number for "minutes"');
+      FLTimer.showError('Enter valid number for "minutes"');
       return false;
     }
 
     if (!FLTimer.isValidNumber(FLTimer.getInputSeconds())) {
-      showError('Enter valid number for "seconds"');
+      FLTimer.showError('Enter valid number for "seconds"');
       return false;
     }
 
