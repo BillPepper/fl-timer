@@ -5,15 +5,8 @@ import "./style.css";
 const version = "0.2.4";
 
 const timerDisplay = document.getElementById("timer_display_number");
-
-const minMinus = document.getElementById("button_minutes_sub");
-const minPlus = document.getElementById("button_minutes_add");
 const displayMin = document.getElementById("input_minutes");
-
-const secMinus = document.getElementById("button_seconds_sub");
-const secPlus = document.getElementById("button_seconds_add");
 const displaySec = document.getElementById("input_seconds");
-
 const timerSettings = document.getElementById("timer_settings");
 const triggerButton = document.getElementById("button_timer_start");
 
@@ -23,7 +16,7 @@ versionString.innerText = `v${version} // This tools does not save any data.`;
 let alertInterval = null;
 let timerInterval = null;
 
-FLTimer = {
+const FLTimer = {
   timerCount: 0,
   timerActive: false,
 
