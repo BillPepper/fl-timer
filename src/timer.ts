@@ -1,42 +1,47 @@
 // FL-Timer
 
+import { FLTimer } from "./interfaces";
+
 import "./style.css";
 
 const version = "0.2.4";
 
-const timerDisplay = document.getElementById("timer_display_number");
-const displayMin = document.getElementById("input_minutes");
-const displaySec = document.getElementById("input_seconds");
-const timerSettings = document.getElementById("timer_settings");
-const triggerButton = document.getElementById("button_timer_start");
+const timerDisplay: HTMLInputElement = document.getElementById("timer_display_number") as HTMLInputElement;
+const displayMin: HTMLInputElement = document.getElementById("input_minutes") as HTMLInputElement;
+const displaySec: HTMLInputElement = document.getElementById("input_seconds") as HTMLInputElement;
+const timerSettings: HTMLButtonElement = document.getElementById("timer_settings") as HTMLButtonElement;
+const triggerButton: HTMLButtonElement = document.getElementById("button_timer_start") as HTMLButtonElement;
 
-const versionString = document.getElementById("version-string");
+const versionString: HTMLSpanElement = document.getElementById("version-string");
 versionString.innerText = `v${version} // This tools does not save any data.`;
 
 let alertInterval = null;
 let timerInterval = null;
 
-const FLTimer = {
+const FLTimer: FLTimer = {
   timerCount: 0,
   timerActive: false,
 
-  handleClick: (id) => {
+  handleClick: (id: string): void => {
+    const minutes = parseInt(displayMin.value);
+    const seconds = parseInt(displaySec.value);
+
     switch (id) {
       case "button_minutes_sub":
-        if (displayMin.value > 0) {
-          displayMin.value--;
+        if (minutes > 0) {
+          displayMin.value = `${minutes -1}`;
         }
         break;
       case "button_minutes_add":
-        displayMin.value++;
+        displayMin.value = `${minutes + 1}`;
         break;
       case "button_seconds_sub":
-        if (displaySec.value > 0) {
-          displaySec.value--;
+        if (seconds > 0) {
+          displaySec.value = `${seconds + 1}`;
         }
         break;
       case "button_seconds_add":
-        displaySec.value++;
+        displaySec.value = `${seconds + 1}`;
         break;
       case "button_timer_start":
         FLTimer.trigger();
@@ -44,11 +49,11 @@ const FLTimer = {
     }
   },
 
-  toTwoDigits: (no) => {
-    return no.toString().padStart(2, "0");
+  toTwoDigits: (value: number): string => {
+    return value.toString().padStart(2, "0");
   },
 
-  setDisplay: (seconds) => {
+  setDisplay: (seconds): void => {
     const min = Math.floor(seconds / 60);
     const sec = seconds - min * 60;
     timerDisplay.innerText = `${FLTimer.toTwoDigits(min)}:${FLTimer.toTwoDigits(
@@ -56,7 +61,7 @@ const FLTimer = {
     )}`;
   },
 
-  trigger: () => {
+  trigger: (): void => {
     if (FLTimer.timerActive) {
       FLTimer.stop();
       return;
@@ -69,53 +74,53 @@ const FLTimer = {
     FLTimer.start();
   },
 
-  alarm: () => {
+  alarm: ():void => {
     alertInterval = setInterval(() => {
       document.querySelector("body").classList.toggle("negative");
     }, 1000);
   },
 
-  finish: () => {
+  finish: ():void => {
     clearInterval(timerInterval);
     timerDisplay.innerText = "Done!";
-    alarm();
+    FLTimer.alarm();
   },
 
-  tick: () => {
+  tick: (): void => {
     if (FLTimer.timerCount < 1) {
-      finish();
+      FLTimer.finish();
       return;
     }
     FLTimer.timerCount--;
     FLTimer.setDisplay(FLTimer.timerCount);
   },
 
-  showError: (msg) => {
-    if (!msg || msg === "") {
+  showError: (message): void => {
+    if (!message || message === "") {
       console.log("no error message given");
       return;
     }
     // ugly, but okay for now
-    alert(msg);
+    alert(message);
   },
 
-  isValidNumber: (num) => {
-    if (!num || isNaN(num)) {
+  isValidNumber: (value: number): boolean => {
+    if (!value || isNaN(value)) {
       return false;
     }
 
     return true;
   },
 
-  getInputMinutes: () => {
-    return displayMin.value;
+  getInputMinutes: (): number => {
+    return parseInt(displayMin.value);
   },
 
-  getInputSeconds: () => {
-    return displaySec.value;
+  getInputSeconds: (): number => {
+    return parseInt(displaySec.value);
   },
 
-  inputsAreValid: () => {
+  inputsAreValid: (): boolean => {
     if (!FLTimer.isValidNumber(FLTimer.getInputMinutes())) {
       FLTimer.showError('Enter valid number for "minutes"');
       return false;
@@ -129,11 +134,11 @@ const FLTimer = {
     return true;
   },
 
-  start: () => {
+  start: (): void => {
     const min = FLTimer.getInputMinutes();
     const sec = FLTimer.getInputSeconds();
 
-    FLTimer.timerCount = parseInt(sec) + parseInt(min) * 60;
+    FLTimer.timerCount = sec + min * 60;
     timerSettings.classList.add("in");
     triggerButton.innerText = "Stop";
     FLTimer.timerActive = true;
@@ -141,7 +146,7 @@ const FLTimer = {
     timerInterval = setInterval(() => FLTimer.tick(), 1000);
   },
 
-  stop: () => {
+  stop: (): void => {
     timerSettings.classList.remove("in");
     triggerButton.innerText = "Start";
     FLTimer.timerActive = false;
@@ -152,4 +157,4 @@ const FLTimer = {
   },
 };
 
-document.addEventListener("click", (e) => FLTimer.handleClick(e.target.id));
+document.addEventListener("click", (e: any) => FLTimer.handleClick(e.target.id));
