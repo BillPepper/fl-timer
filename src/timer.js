@@ -1,5 +1,6 @@
 // FL-Timer
 
+import FLHelpers from "./helpers";
 import "./style.css";
 
 const version = "0.2.5";
@@ -43,16 +44,12 @@ const FLTimer = {
     }
   },
 
-  toTwoDigits: (no) => {
-    return no.toString().padStart(2, "0");
-  },
-
   setDisplay: (seconds) => {
     const min = Math.floor(seconds / 60);
     const sec = seconds - min * 60;
-    timerDisplay.innerText = `${FLTimer.toTwoDigits(min)}:${FLTimer.toTwoDigits(
-      sec
-    )}`;
+    timerDisplay.innerText = `${FLHelpers.toTwoDigits(
+      min
+    )}:${FLHelpers.toTwoDigits(sec)}`;
   },
 
   trigger: () => {
@@ -98,14 +95,6 @@ const FLTimer = {
     alert(msg);
   },
 
-  isValidNumber: (num) => {
-    if (!num || isNaN(num)) {
-      return false;
-    }
-
-    return true;
-  },
-
   getInputMinutes: () => {
     return displayMin.value;
   },
@@ -115,12 +104,12 @@ const FLTimer = {
   },
 
   inputsAreValid: () => {
-    if (!FLTimer.isValidNumber(FLTimer.getInputMinutes())) {
+    if (!FLHelpers.isValidNumber(FLTimer.getInputMinutes())) {
       FLTimer.showError('Enter valid number for "minutes"');
       return false;
     }
 
-    if (!FLTimer.isValidNumber(FLTimer.getInputSeconds())) {
+    if (!FLHelpers.isValidNumber(FLTimer.getInputSeconds())) {
       FLTimer.showError('Enter valid number for "seconds"');
       return false;
     }
