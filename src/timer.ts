@@ -5,7 +5,7 @@ import { FLTimer } from "./interfaces";
 
 import "./style.css";
 
-const version = "0.2.5";
+const version = "0.2.6";
 const versionString = document.getElementById("version-string");
 versionString.innerText = `v${version} // This tools does not save any data.`;
 
