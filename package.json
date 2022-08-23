@@ -10,5 +10,8 @@
   "scripts": {
     "watch": "webpack --watch",
     "build": "webpack"
+  },
+  "dependencies": {
+    "ts-loader": "^9.3.1"
   }
 }

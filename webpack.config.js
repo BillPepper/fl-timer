@@ -2,7 +2,7 @@ const CopyPlugin = require("copy-webpack-plugin");
 
 module.exports = {
   mode: "development",
-  entry: ["./src/timer.js"],
+  entry: ["./src/timer.ts"],
   output: {
     path: __dirname + "/dist",
     filename: "timer.bundle.js",
@@ -17,6 +17,10 @@ module.exports = {
         test: /\.css$/i,
         use: ["style-loader", "css-loader"],
       },
+      {
+        test: /\.ts$/i,
+        use: ["ts-loader"],
+      }
     ],
   },
   plugins: [
