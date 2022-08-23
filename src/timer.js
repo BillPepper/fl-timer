@@ -78,12 +78,12 @@ const FLTimer = {
   finish: () => {
     clearInterval(timerInterval);
     timerDisplay.innerText = "Done!";
-    alarm();
+    FLTimer.alarm();
   },
 
   tick: () => {
     if (FLTimer.timerCount < 1) {
-      finish();
+      FLTimer.finish();
       return;
     }
     FLTimer.timerCount--;
