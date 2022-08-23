@@ -2,7 +2,7 @@
 
 import "./style.css";
 
-const version = "0.2.4";
+const version = "0.2.5";
 
 const timerDisplay = document.getElementById("timer_display_number");
 const displayMin = document.getElementById("input_minutes");
