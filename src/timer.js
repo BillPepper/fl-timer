@@ -3,15 +3,14 @@
 import "./style.css";
 
 const version = "0.2.5";
+const versionString = document.getElementById("version-string");
+versionString.innerText = `v${version} // This tools does not save any data.`;
 
 const timerDisplay = document.getElementById("timer_display_number");
 const displayMin = document.getElementById("input_minutes");
 const displaySec = document.getElementById("input_seconds");
 const timerSettings = document.getElementById("timer_settings");
 const triggerButton = document.getElementById("button_timer_start");
-
-const versionString = document.getElementById("version-string");
-versionString.innerText = `v${version} // This tools does not save any data.`;
 
 let alertInterval = null;
 let timerInterval = null;
