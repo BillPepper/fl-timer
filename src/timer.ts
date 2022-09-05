@@ -115,10 +115,16 @@ const FLTimer: FLTimer = {
   },
 
   getInputMinutes: (): number => {
+    if (displayMin.value == ''){
+      return 0;
+    }
     return parseInt(displayMin.value);
   },
 
   getInputSeconds: (): number => {
+    if (displaySec.value == ''){
+      return 0;
+    }
     return parseInt(displaySec.value);
   },
 
