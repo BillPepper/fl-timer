@@ -123,13 +123,11 @@ const FLTimer: FLTimer = {
   },
 
   inputsAreValid: (): boolean => {
-    if (!FLHelpers.isValidNumber(FLTimer.getInputMinutes())) {
-      FLTimer.showError('Enter valid number for "minutes"');
-      return false;
-    }
+    const isMinValid = FLHelpers.isValidNumber(FLTimer.getInputMinutes())
+    const isSecValid = FLHelpers.isValidNumber(FLTimer.getInputSeconds())
 
-    if (!FLHelpers.isValidNumber(FLTimer.getInputSeconds())) {
-      FLTimer.showError('Enter valid number for "seconds"');
+    if (!isMinValid && !isSecValid){
+      FLTimer.showError('Enter valid time');
       return false;
     }
 
