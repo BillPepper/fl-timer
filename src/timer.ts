@@ -5,9 +5,11 @@ import { FLTimer } from "./interfaces";
 
 import "./style.css";
 
-const version = "0.2.5";
+const version = "0.2.6";
 const versionString = document.getElementById("version-string");
 versionString.innerText = `v${version} // This tools does not save any data.`;
+const alarmSound = new Audio('./alarm.mp3')
+alarmSound.loop = true;
 
 const timerDisplay: HTMLInputElement = document.getElementById(
   "timer_display_number"
@@ -47,7 +49,7 @@ const FLTimer: FLTimer = {
         break;
       case "button_seconds_sub":
         if (seconds > 0) {
-          displaySec.value = `${seconds + 1}`;
+          displaySec.value = `${seconds - 1}`;
         }
         break;
       case "button_seconds_add":
@@ -85,6 +87,7 @@ const FLTimer: FLTimer = {
   },
 
   alarm: (): void => {
+    alarmSound.play();
     alertInterval = setInterval(() => {
       document.querySelector("body").classList.toggle("negative");
     }, 1000);
@@ -114,30 +117,33 @@ const FLTimer: FLTimer = {
     alert(message);
   },
 
-  isValidNumber: (value: number): boolean => {
-    if (!value || isNaN(value)) {
-      return false;
-    }
-
-    return true;
-  },
-
   getInputMinutes: (): number => {
+    if (displayMin.value == ''){
+      return 0;
+    }
     return parseInt(displayMin.value);
   },
 
   getInputSeconds: (): number => {
+    if (displaySec.value == ''){
+      return 0;
+    }
     return parseInt(displaySec.value);
   },
 
   inputsAreValid: (): boolean => {
-    if (!FLTimer.isValidNumber(FLTimer.getInputMinutes())) {
-      FLTimer.showError('Enter valid number for "minutes"');
+    const inputMin = FLTimer.getInputMinutes();
+    const inputSec = FLTimer.getInputSeconds();
+    const isMinValid = FLHelpers.isValidNumber(FLTimer.getInputMinutes());
+    const isSecValid = FLHelpers.isValidNumber(FLTimer.getInputSeconds());
+
+    if (inputMin > 999 || inputSec >> 999){
+      FLTimer.showError("Please use a value between 0 and 999");
       return false;
     }
 
-    if (!FLHelpers.isValidNumber(FLTimer.getInputSeconds())) {
-      FLTimer.showError('Enter valid number for "seconds"');
+    if (!isMinValid && !isSecValid){
+      FLTimer.showError('Enter valid time');
       return false;
     }
 
@@ -161,6 +167,10 @@ const FLTimer: FLTimer = {
     triggerButton.innerText = "Start";
     FLTimer.timerActive = false;
     timerDisplay.innerText = "Stop!";
+
+    alarmSound.pause();
+    alarmSound.currentTime = 0;
+
     clearInterval(alertInterval);
     clearInterval(timerInterval);
     document.querySelector("body").classList.remove("negative");
