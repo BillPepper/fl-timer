@@ -3,7 +3,7 @@
 import FLHelpers from "./helpers";
 import { FLTimer } from "./interfaces";
 
-import "./style.css";
+import "./style.scss";
 
 const version = "0.2.6";
 const versionString = document.getElementById("version-string");

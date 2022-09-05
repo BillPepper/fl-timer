@@ -1,0 +1,132 @@
+$black: #333333;
+$red: #990000;
+$blue: #007799;
+$green: #009955;
+$gray: #999999;
+
+$background: $black;
+$warn: $red;
+$primary: $green;
+$text: $gray;
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: $background;
+  color: $text;
+  font-family: "Rubik", sans-serif;
+  height: 100vh;
+
+  .negative {
+    background-color: $background;
+  }
+
+  .negative span {
+    color: $warn;
+  }
+
+  #timer {
+    border-radius: 2px;
+    width: 320px;
+    margin: auto;
+    transform: translateY(calc(50vh - 80px));
+
+    button,
+    input {
+      color: $text;
+      height: 40px;
+      border: 1px solid $text;
+      background-color: $background;
+      font-size: 20px;
+      text-align: center;
+      box-sizing: border-box;
+      outline: none;
+    }
+
+    button:hover {
+      color: $primary;
+      text-shadow: 1px 1px 5px $primary;
+    }
+
+    button + button {
+      border-left: none;
+    }
+
+    .timer_display {
+      font-size: 80px;
+      text-align: center;
+      border: 1px solid;
+      border-bottom: none;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+    }
+
+    .timer_settings {
+      display: grid;
+      grid-template-columns: 2fr 3fr 2fr 2fr 3fr 2fr;
+    }
+
+    .timer_settings > input {
+      border: none;
+      border-top: 1px solid;
+      border-bottom: 1px solid;
+    }
+
+    .timer_settings button:hover {
+      border: 1px solid $primary;
+    }
+
+    .out {
+      animation: squeeze 1s ease;
+      animation-direction: reverse;
+      animation-fill-mode: backwards;
+    }
+
+    .in {
+      animation: squeeze 1s ease;
+      animation-fill-mode: forwards;
+    }
+
+    @keyframes squeeze {
+      from {
+        height: 40px;
+      }
+      to {
+        height: 0px;
+      }
+    }
+
+    #button_timer_start {
+      width: 100%;
+      border: 1px solid;
+      border-top: none;
+      border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 5px;
+      z-index: 200;
+    }
+
+    #button_timer_start:hover {
+      border: 1px solid $primary;
+    }
+
+    input {
+      width: 100%;
+    }
+  }
+
+
+  .timer_footer_note {
+    opacity: 0.5;
+    position: absolute;
+    left: 5px;
+    bottom: 5px;
+    font-size: 10px;
+  }
+}
+
+h5 {
+  color: $primary;
+}
