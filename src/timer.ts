@@ -47,7 +47,7 @@ const FLTimer: FLTimer = {
         break;
       case "button_seconds_sub":
         if (seconds > 0) {
-          displaySec.value = `${seconds + 1}`;
+          displaySec.value = `${seconds - 1}`;
         }
         break;
       case "button_seconds_add":
