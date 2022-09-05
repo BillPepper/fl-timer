@@ -28,6 +28,7 @@ module.exports = {
       patterns: [
         { from: "./res/favicon.ico", to: "favicon.ico" },
         { from: "./src/index.html", to: "index.html" },
+        { from: "./res/alarm.mp3", to: "alarm.mp3" }
       ],
     }),
   ],

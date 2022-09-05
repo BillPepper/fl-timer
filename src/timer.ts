@@ -8,6 +8,8 @@ import "./style.css";
 const version = "0.2.6";
 const versionString = document.getElementById("version-string");
 versionString.innerText = `v${version} // This tools does not save any data.`;
+const alarmSound = new Audio('./alarm.mp3')
+alarmSound.loop = true;
 
 const timerDisplay: HTMLInputElement = document.getElementById(
   "timer_display_number"
@@ -85,6 +87,7 @@ const FLTimer: FLTimer = {
   },
 
   alarm: (): void => {
+    alarmSound.play();
     alertInterval = setInterval(() => {
       document.querySelector("body").classList.toggle("negative");
     }, 1000);
@@ -164,6 +167,10 @@ const FLTimer: FLTimer = {
     triggerButton.innerText = "Start";
     FLTimer.timerActive = false;
     timerDisplay.innerText = "Stop!";
+
+    alarmSound.pause();
+    alarmSound.currentTime = 0;
+
     clearInterval(alertInterval);
     clearInterval(timerInterval);
     document.querySelector("body").classList.remove("negative");
