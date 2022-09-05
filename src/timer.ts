@@ -129,8 +129,15 @@ const FLTimer: FLTimer = {
   },
 
   inputsAreValid: (): boolean => {
-    const isMinValid = FLHelpers.isValidNumber(FLTimer.getInputMinutes())
-    const isSecValid = FLHelpers.isValidNumber(FLTimer.getInputSeconds())
+    const inputMin = FLTimer.getInputMinutes();
+    const inputSec = FLTimer.getInputSeconds();
+    const isMinValid = FLHelpers.isValidNumber(FLTimer.getInputMinutes());
+    const isSecValid = FLHelpers.isValidNumber(FLTimer.getInputSeconds());
+
+    if (inputMin > 999 || inputSec >> 999){
+      FLTimer.showError("Please use a value between 0 and 999");
+      return false;
+    }
 
     if (!isMinValid && !isSecValid){
       FLTimer.showError('Enter valid time');
