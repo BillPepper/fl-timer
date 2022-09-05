@@ -9,7 +9,6 @@ export interface FLTimer {
     finish: () => void,
     tick: () => void,
     showError: (message: string) => void,
-    isValidNumber: (value: number) => boolean,
     getInputMinutes: () => number,
     getInputSeconds: () => number,
     inputsAreValid: () => boolean,

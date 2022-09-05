@@ -114,14 +114,6 @@ const FLTimer: FLTimer = {
     alert(message);
   },
 
-  isValidNumber: (value: number): boolean => {
-    if (!value || isNaN(value)) {
-      return false;
-    }
-
-    return true;
-  },
-
   getInputMinutes: (): number => {
     return parseInt(displayMin.value);
   },
@@ -131,7 +123,7 @@ const FLTimer: FLTimer = {
   },
 
   inputsAreValid: (): boolean => {
-    if (!FLTimer.isValidNumber(FLTimer.getInputMinutes())) {
+    if (!FLHelpers.isValidNumber(FLTimer.getInputMinutes())) {
       FLTimer.showError('Enter valid number for "minutes"');
       return false;
     }
