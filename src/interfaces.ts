@@ -14,4 +14,6 @@ export interface FLTimer {
     inputsAreValid: () => boolean,
     start: () => void,
     stop: () => void,
+    showSettings: () => void,
+    hideSettings: () => void,
 }

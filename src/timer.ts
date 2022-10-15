@@ -3,14 +3,20 @@
 import FLHelpers from "./helpers";
 import { FLTimer } from "./interfaces";
 
-import "./style.css";
+import "./style.scss";
 
-const version = "0.2.6";
+const version = "0.2.7";
 const versionString = document.getElementById("version-string");
 versionString.innerText = `v${version} // This tools does not save any data.`;
 const alarmSound = new Audio('./alarm.mp3')
 alarmSound.loop = true;
 
+const timerWrapper: HTMLInputElement = document.getElementById(
+  'timer'
+) as HTMLInputElement
+const settingsWrapper: HTMLInputElement = document.getElementById(
+  'settings'
+) as HTMLInputElement
 const timerDisplay: HTMLInputElement = document.getElementById(
   "timer_display_number"
 ) as HTMLInputElement;
@@ -57,7 +63,13 @@ const FLTimer: FLTimer = {
         break;
       case "button_timer_start":
         FLTimer.trigger();
+      case "button_settings":
+        FLTimer.showSettings();
         break;
+      case "button_settings_close":
+        FLTimer.hideSettings();
+        break;
+;
     }
   },
 
@@ -175,6 +187,17 @@ const FLTimer: FLTimer = {
     clearInterval(timerInterval);
     document.querySelector("body").classList.remove("negative");
   },
+
+  showSettings: (): void => {
+    timerWrapper.style.display = 'none';
+    settingsWrapper.style.display = 'block';
+  },
+
+  hideSettings: (): void => {
+    timerWrapper.style.display = 'block';
+    settingsWrapper.style.display = 'none';
+  }
+
 };
 
 document.addEventListener("click", (e: any) =>
