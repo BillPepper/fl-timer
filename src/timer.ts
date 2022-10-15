@@ -5,7 +5,7 @@ import { FLTimer } from "./interfaces";
 
 import "./style.scss";
 
-const version = "0.2.6";
+const version = "0.2.7";
 const versionString = document.getElementById("version-string");
 versionString.innerText = `v${version} // This tools does not save any data.`;
 const alarmSound = new Audio('./alarm.mp3')
