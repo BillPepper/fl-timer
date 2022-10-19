@@ -5,7 +5,7 @@ import { FLTimer } from "./interfaces";
 
 import "./style.scss";
 
-const version = "0.2.8";
+const version = "0.2.9";
 const versionString = document.getElementById("version-string");
 versionString.innerText = `v${version} // This tools does not save any data.`;
 const alarmSound = new Audio('./alarm.mp3')
@@ -168,7 +168,9 @@ const FLTimer: FLTimer = {
     const sec = FLTimer.getInputSeconds();
 
     FLTimer.timerCount = sec + min * 60;
-    timerSettings.classList.add("in");
+    // expand class is set by default in index.html
+    timerSettings.classList.remove('expand');
+    timerSettings.classList.add('collapse');
     triggerButton.innerText = "Stop";
     FLTimer.timerActive = true;
     FLTimer.setDisplay(FLTimer.timerCount);
@@ -176,7 +178,8 @@ const FLTimer: FLTimer = {
   },
 
   stop: (): void => {
-    timerSettings.classList.remove("in");
+    timerSettings.classList.remove('collapse');
+    timerSettings.classList.add('expand');
     triggerButton.innerText = "Start";
     FLTimer.timerActive = false;
     timerDisplay.innerText = "Stop!";

@@ -8,8 +8,10 @@ $gray: #999999;
 
 $background: $black;
 $warn: $red;
-$primary: $green;
+$primary: $blue;
 $text: $gray;
+
+$transition: 0.3s;
 
 * {
   margin: 0;
@@ -23,14 +25,6 @@ body {
   font-family: "Rubik", sans-serif;
   height: 100vh;
 
-  .negative {
-    background-color: $background;
-  }
-
-  .negative span {
-    color: $warn;
-  }
-
   button,
   input {
     color: $text;
@@ -43,11 +37,13 @@ body {
     outline: none;
     padding: 10px;
     line-height: 10px;
+    transition: background-color $transition ease, color $transition ease;
   }
 
   button:hover {
-    color: $primary;
-    text-shadow: 1px 1px 5px $primary;
+    color: $black;
+    background-color: $primary;
+    cursor: pointer;
   }
 
   #button_settings {
@@ -67,15 +63,14 @@ body {
       padding: 0;
     }
 
-    button + button {
+    button + button, button + input, input + button {
       border-left: none;
     }
 
     .timer_display {
       font-size: 80px;
       text-align: center;
-      border: 1px solid;
-      border-bottom: none;
+      border: 1px solid $text;
       border-top-left-radius: 5px;
       border-top-right-radius: 5px;
     }
@@ -83,49 +78,29 @@ body {
     .timer_settings {
       display: grid;
       grid-template-columns: 2fr 3fr 2fr 2fr 3fr 2fr;
-    }
+      overflow: hidden;
+      transition: height 1s ease;
 
-    .timer_settings > input {
-      border: none;
-      border-top: 1px solid;
-      border-bottom: 1px solid;
-    }
-
-    .timer_settings button:hover {
-      border: 1px solid $primary;
-    }
-
-    .out {
-      animation: squeeze 1s ease;
-      animation-direction: reverse;
-      animation-fill-mode: backwards;
-    }
-
-    .in {
-      animation: squeeze 1s ease;
-      animation-fill-mode: forwards;
-    }
-
-    @keyframes squeeze {
-      from {
-        height: 40px;
+      button, input {
+        border-top: none;
+        border-bottom: none;
       }
-      to {
-        height: 0px;
-      }
+    }
+
+    .expand {
+      height: 40px;
+    }
+
+    .collapse {
+      height: 0px;
     }
 
     #button_timer_start {
       width: 100%;
-      border: 1px solid;
-      border-top: none;
+      border: 1px solid $text;
       border-bottom-left-radius: 5px;
       border-bottom-right-radius: 5px;
       z-index: 200;
-    }
-
-    #button_timer_start:hover {
-      border: 1px solid $primary;
     }
 
     input {
@@ -138,7 +113,7 @@ body {
     width: 320px;
     height: 180px;
     border-radius: 5px;
-    border: 1px solid;
+    border: 1px solid $text;
     margin: auto;
     transform: translateY(calc(50vh - 80px));
   }
