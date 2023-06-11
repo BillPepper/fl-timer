@@ -5,11 +5,12 @@ import { FLTimer } from "./interfaces";
 
 import "./style.scss";
 
-const version = "0.3.0";
+const version = "0.3.1";
 const versionString = document.getElementById("version-string");
 versionString.innerText = `v${version} // This tools does not save any data.`;
 const alarmSound = new Audio('./alarm.mp3')
-const alarmWaitTime = 1000;
+const alarmSoundTime = 20000;
+const alarmInvertTime = 3000;
 alarmSound.loop = false;
 
 const timerWrapper: HTMLInputElement = document.getElementById(
@@ -34,8 +35,9 @@ const triggerButton: HTMLButtonElement = document.getElementById(
   "button_timer_start"
 ) as HTMLButtonElement;
 
-let alertInterval = null;
 let timerInterval = null;
+let alarmInvertInterval = null;
+let alarmSoundInterval = null;
 
 const FLTimer: FLTimer = {
   timerCount: 0,
@@ -101,10 +103,17 @@ const FLTimer: FLTimer = {
   },
 
   alarm: (): void => {
+    // cheap, but invert and play sound immediately
+    document.querySelector("body").classList.toggle("negative");
     alarmSound.play();
-    alertInterval = setInterval(() => {
+
+    alarmSoundInterval = setInterval(() => {
+      alarmSound.play();
+    }, alarmSoundTime)
+
+    alarmInvertInterval = setInterval(() => {
       document.querySelector("body").classList.toggle("negative");
-    }, alarmWaitTime);
+    }, alarmInvertTime);
   },
 
   finish: (): void => {
@@ -188,7 +197,8 @@ const FLTimer: FLTimer = {
     alarmSound.pause();
     alarmSound.currentTime = 0;
 
-    clearInterval(alertInterval);
+    clearInterval(alarmInvertInterval);
+    clearInterval(alarmSoundInterval);
     clearInterval(timerInterval);
     document.querySelector("body").classList.remove("negative");
   },
