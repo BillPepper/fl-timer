@@ -19,6 +19,14 @@ $transition: 0.3s;
 }
 
 
+.negative {
+  background-color: #330000;
+}
+
+.negative span {
+  color: #990000;
+}
+
 body {
   background-color: $background;
   color: $text;

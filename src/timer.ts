@@ -5,11 +5,12 @@ import { FLTimer } from "./interfaces";
 
 import "./style.scss";
 
-const version = "0.2.9";
+const version = "0.3.0";
 const versionString = document.getElementById("version-string");
 versionString.innerText = `v${version} // This tools does not save any data.`;
 const alarmSound = new Audio('./alarm.mp3')
-alarmSound.loop = true;
+const alarmWaitTime = 1000;
+alarmSound.loop = false;
 
 const timerWrapper: HTMLInputElement = document.getElementById(
   'timer'
@@ -103,7 +104,7 @@ const FLTimer: FLTimer = {
     alarmSound.play();
     alertInterval = setInterval(() => {
       document.querySelector("body").classList.toggle("negative");
-    }, 1000);
+    }, alarmWaitTime);
   },
 
   finish: (): void => {
