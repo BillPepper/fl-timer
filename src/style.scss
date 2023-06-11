@@ -27,8 +27,13 @@ $transition: 0.3s;
   color: #990000;
 }
 
+span {
+  transition: color $transition;
+}
+
 body {
   background-color: $background;
+  transition: background-color $transition;
   color: $text;
   font-family: "Rubik", sans-serif;
   height: 100vh;
