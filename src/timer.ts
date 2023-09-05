@@ -73,7 +73,6 @@ const FLTimer: FLTimer = {
       case "button_settings_close":
         FLTimer.hideSettings();
         break;
-;
     }
   },
 
