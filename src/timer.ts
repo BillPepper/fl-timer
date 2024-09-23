@@ -9,7 +9,7 @@ const version = "0.3.2";
 const versionString = document.getElementById("version-string");
 versionString.innerText = `v${version} // This tools does not save any data.`;
 const alarmSound = new Audio('./alarm.mp3')
-const alarmSoundTime = 20000;
+const alarmSoundTime = 30 * 1000; // sec * ms
 const alarmInvertTime = 1000;
 alarmSound.loop = false;
 
